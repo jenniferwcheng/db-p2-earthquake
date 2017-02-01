@@ -1,22 +1,84 @@
 <!doctype html>
 <html>
-<head>
-  <title>Earthquake tracker</title>
-  <meta charset='UTF-8' />
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
-  <link href='p2_style.css' rel='stylesheet' type='text/css' />
-</head>
-<body>
-  <!-- Put your HTML here! -->
-  <div style="text-align:center;">
-      <button class = "refreshButton" type = "button" onClick = "Refresh()">Refresh</button>
-  <!-- Display earthquake data -->
+    <head>
+  <title>Earthquake Tracker</title>
+      <meta charset='UTF-8' />
 
-  <div id='sample'></div>
+      <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
+
+      <link href='p2_style.css' rel='stylesheet' type='text/css' />
+
+      <link rel="icon" type="img/png" href="http://findicons.com/files/icons/117/radium/128/globe_connected.png"/>
+
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    </head>
+<body>
+    <h1>Earthquakes in the Past 24 Hours</h1><br><br>
+
+    <div style="text-align:center;">
+
+        <div class = "nav"><a class = "button" href="javascript:history.go(0)">Refresh</a>
+
+        <!-- Live Data Display Tab -->
+        <a class = "button" id = "myBtn">View Live Data</a><br><br><br>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Live Data</h2>
+              </div>
+              <div class="modal-body">
+                <div id = 'sample'> </div>
+              </div>
+              <div class="modal-footer">
+                <h3>Data from <a href="http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank">USGS</a></h3>
+              </div>
+            </div>
+        </div>
+
+      <!-- Display earthquake map -->
+      <ul id ='map'></ul><br><br><br>
   </div>
+
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
   <script src='p2_script.js'></script>
+
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+  </script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd3aTI52t_Dns8fO5Tg47-95A_PP8qA_E&callback=initMap">
+  </script>
+
+  <script>
+      // Get the modal
+      var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+        }
+    </script>
+
 </body>
 </html>
-
-<!-- mapbox, set interval -->
