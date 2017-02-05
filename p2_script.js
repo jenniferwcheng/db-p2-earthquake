@@ -17,7 +17,7 @@ $(document).ready(function() {
       }
     })
     .fail(function(error) {
-      document.write("Error");
+      console.log("Error");
     })
 
   // Display the earthquake titles on the page
